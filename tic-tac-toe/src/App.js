@@ -24,6 +24,7 @@ const App = () => {
       let circleWins = array.every((cell) => cells[cell] === 'circle');
       if(circleWins) {
         setWinningMessage('Circle wins!');
+        return;
       }
     });
 
@@ -31,12 +32,20 @@ const App = () => {
       let crossWins = array.every((cell) => cells[cell] === 'cross');
       if(crossWins) {
         setWinningMessage('Cross wins!');
+        return;
       }
     });
+
+    let tie = cells.every(cell => cell !== "");
+    if(tie) {
+      setWinningMessage("Tie!");
+    }
   };
 
   const reset = () => {
     setCells(["", "", "", "", "", "", "", "", ""]);
+    setWinningMessage("");
+    setGo('circle');
   }
 
   useEffect(() => {
@@ -60,7 +69,7 @@ const App = () => {
         ))}
       </div>
       <p>{winningMessage || message}</p>
-      <button onClick={reset}>reset</button>
+      {winningMessage && <button onClick={reset}>reset</button>}
     </div>
   );
 };
