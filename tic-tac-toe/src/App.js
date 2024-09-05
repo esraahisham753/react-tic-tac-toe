@@ -54,6 +54,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <h1>React</h1>
       <div className="gameboard">
         {cells.map((cell, index) => (
           <Cell
